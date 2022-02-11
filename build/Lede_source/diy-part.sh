@@ -7,12 +7,34 @@
 # 如果你的OP是当主路由的话，网关、DNS、广播都不需要，代码前面加 # 注释掉，只保留后台地址和子网掩码就可以
 # 如果你有编译ipv6的话，‘去掉LAN口使用内置的 IPv6 管理’代码前面也加 # 注释掉
 
+echo '添加lwz322的K3屏幕插件'
+rm -rf package/lean/luci-app-k3screenctrl
+git clone https://github.com/yangxu52/luci-app-k3screenctrl.git package/lean/luci-app-k3screenctrl
+echo '=========Add k3screen plug OK!========='
 
-
-echo '替换K3屏幕驱动插件'
+echo '替换lwz322的K3屏幕驱动插件'
 rm -rf package/lean/k3screenctrl
-git clone https://github.com/RLEDE/k3screenctrl_build.git package/lean/k3screenctrl/
+git clone https://github.com/yangxu52/k3screenctrl_build.git package/lean/k3screenctrl/
 echo '=========Replace k3screen drive plug OK!========='
+
+echo '移除bcm53xx中的其他机型'
+sed -i '421,453d' target/linux/bcm53xx/image/Makefile
+sed -i '140,412d' target/linux/bcm53xx/image/Makefile
+sed -i 's/$(USB3_PACKAGES) k3screenctrl/luci-app-k3screenctrl/g' target/linux/bcm53xx/image/Makefile
+# sed -n '140,146p' target/linux/bcm53xx/image/Makefile
+echo '=========Remove other devices of bcm53xx OK!========='
+
+
+echo '修改upnp绑定文件位置'
+sed -i 's/\/var\/upnp.leases/\/tmp\/upnp.leases/g' feeds/packages/net/miniupnpd/files/upnpd.config
+cat feeds/packages/net/miniupnpd/files/upnpd.config |grep upnp_lease_file
+echo '=========Alert upnp binding file directory!========='
+
+
+# echo '替换K3屏幕驱动插件'
+# rm -rf package/lean/k3screenctrl
+# git clone https://github.com/RLEDE/k3screenctrl_build.git package/lean/k3screenctrl/
+# echo '=========Replace k3screen drive plug OK!========='
 
 echo '添加theme'
 git clone https://github.com/abctel/luci-theme-edge.git package/lean/luci-theme-edge
