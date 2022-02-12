@@ -63,9 +63,9 @@ sed -i "s/hostname='OpenWrt'/hostname='PHICOMM'/g" package/base-files/files/bin/
 cat package/base-files/files/bin/config_generate |grep hostname=
 echo '=========Alert hostname OK!========='
 
-echo '替换K3的无线驱动'
-wget -nv https://github.com/RLEDE/target/raw/main/brcmfmac4366c-pcie.bin -O package/lean/k3-brcmfmac4366c-firmware/files/lib/firmware/brcm/brcmfmac4366c-pcie.bin
-echo '=========Replace k3wifi OK!========='
+# echo '替换K3的无线驱动'
+# wget -nv https://github.com/RLEDE/target/raw/main/brcmfmac4366c-pcie.bin -O package/lean/k3-brcmfmac4366c-firmware/files/lib/firmware/brcm/brcmfmac4366c-pcie.bin
+# echo '=========Replace k3wifi OK!========='
 
 
 # 修改插件名
