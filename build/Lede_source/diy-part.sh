@@ -14,10 +14,15 @@
 
 # sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
 
-echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages' >> feeds.conf.default
+echo 'src-git small-package https://github.com/kenzok8/small-package' >> feeds.conf.default
+
+# echo 'src-git kenzo https://github.com/kenzok8/openwrt-packages' >> feeds.conf.default
 
 echo 'src-git small https://github.com/kenzok8/small' >> feeds.conf.default
 
+# src-git node https://github.com/nxhack/openwrt-node-packages.git;openwrt-18.06
+
+echo 'src-git node https://github.com/nxhack/openwrt-node-packages.git;openwrt-18.06' >> feeds.conf.default
 
 echo '添加lwz322的K3屏幕插件'
 rm -rf package/lean/luci-app-k3screenctrl
